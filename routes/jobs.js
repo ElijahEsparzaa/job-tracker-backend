@@ -9,6 +9,7 @@ router.post('/', async (req, res) => {
     await job.save();
     res.json(job);
   } catch (err) {
+    console.error('POST /api/jobs error:', err);  // Log error to console
     res.status(500).send(err.message);
   }
 });
@@ -19,6 +20,7 @@ router.get('/', async (req, res) => {
     const jobs = await Job.find();
     res.json(jobs);
   } catch (err) {
+    console.error('GET /api/jobs error:', err);
     res.status(500).send(err.message);
   }
 });
@@ -29,6 +31,7 @@ router.put('/:id', async (req, res) => {
     const updated = await Job.findByIdAndUpdate(req.params.id, req.body, { new: true });
     res.json(updated);
   } catch (err) {
+    console.error('PUT /api/jobs/:id error:', err);
     res.status(500).send(err.message);
   }
 });
@@ -39,6 +42,7 @@ router.delete('/:id', async (req, res) => {
     await Job.findByIdAndDelete(req.params.id);
     res.json({ message: 'Job deleted' });
   } catch (err) {
+    console.error('DELETE /api/jobs/:id error:', err);
     res.status(500).send(err.message);
   }
 });
