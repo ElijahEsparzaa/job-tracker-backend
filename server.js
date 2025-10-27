@@ -5,7 +5,7 @@ require('dotenv').config();
 
 const app = express();
 
-// Allow requests only from your deployed frontend URL
+//Allow requests only from your deployed frontend URL
 app.use(cors({
   origin: 'https://job-tracker-frontend-umber.vercel.app',
 }));

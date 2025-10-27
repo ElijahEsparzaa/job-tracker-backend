@@ -2,19 +2,19 @@ const express = require('express');
 const router = express.Router();
 const Job = require('../models/Job');
 
-// Create
+//Create
 router.post('/', async (req, res) => {
   try {
     const job = new Job(req.body);
     await job.save();
     res.json(job);
   } catch (err) {
-    console.error('POST /api/jobs error:', err);  // Log error to console
+    console.error('POST /api/jobs error:', err);  //Log error to console
     res.status(500).send(err.message);
   }
 });
 
-// Read all
+//Read all
 router.get('/', async (req, res) => {
   try {
     const jobs = await Job.find();
@@ -25,7 +25,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Update
+//Update
 router.put('/:id', async (req, res) => {
   try {
     const updated = await Job.findByIdAndUpdate(req.params.id, req.body, { new: true });
@@ -36,7 +36,7 @@ router.put('/:id', async (req, res) => {
   }
 });
 
-// Delete
+//Delete
 router.delete('/:id', async (req, res) => {
   try {
     await Job.findByIdAndDelete(req.params.id);
